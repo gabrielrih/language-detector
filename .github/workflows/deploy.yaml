@@ -12,7 +12,7 @@ jobs:
   deploy:
     name: 'Deploying on AWS'
     runs-on: ubuntu-latest
-    #environment: production
+    environment: production
 
     defaults:
       run:
