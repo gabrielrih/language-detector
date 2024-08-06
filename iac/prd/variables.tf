@@ -5,5 +5,5 @@ variable "aws_region" {
 
 variable "lambda_zip_path" {
     type = string
-    default = "../../src/language-detector/language-detector.zip"
+    default = "../../src/language-detector/python/language-detector.zip"
 }
