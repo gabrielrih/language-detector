@@ -3,6 +3,7 @@
 lambda_function='language-detector'
 echo "Building lambda $lambda_function"
 
+# Creating "python" folder and copying all the files and dependencies to it
 path="./src/$lambda_function"
 cd $path
 rm -rf python
@@ -15,6 +16,10 @@ rsync -ax \
     --exclude .DS_Store \
     --exclude language-detector.zip \
     . python
+cp ../../ai/model/model.pkl python/
+cp ../../ai/model/vectorizer.pkl python/
 
-zip -r "$lambda_function.zip" .
+# Compacting "python" folder
+cd python
+zip -r "$lambda_function" .
 echo "Built lambda $lambda_function"
