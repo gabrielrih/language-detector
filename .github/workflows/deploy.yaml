@@ -1,0 +1,33 @@
+name: 'Deploy'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    #environment: production
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Create ZIP for lambda code
+          run: |
+            chmod 744 ./scripts/build_lambda.py
+            ./scripts/build_lambda.py
+
+        - name: Debug pwd
+          run: |
+            pwd
+            ls -ls ./src/language-detector/
