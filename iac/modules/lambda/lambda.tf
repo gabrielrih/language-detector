@@ -8,7 +8,7 @@ resource "aws_lambda_function" "language_detector" {
     ephemeral_storage {
       size = 512
     }
-    role = aws_iam_role.github_clone_lambda.arn
+    role = aws_iam_role.language_detector.arn
     layers = [
         "arn:aws:lambda:${var.aws_region}:553035198032:layer:git-lambda2:8"
     ]
