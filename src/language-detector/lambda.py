@@ -38,25 +38,48 @@ class LanguageDetector:
 
 def handler(event, _):
     logger.info(f'Event: {event}')
-    http_method = event['requestContext']['http']['method']
-    if http_method != 'POST':
-        logger.exception(error_message)
-        raise Exception(error_message)
-    
-    body = event.get('body')
-    if not body:
-        error_message = 'The body should not be empty'
-        logger.error(error_message)
-        return {
-            'status_code': HTTPStatus.BAD_REQUEST,
-            'error_message': error_message
-        }
-    logger.info(f'Received content: {body}')
-    detector = LanguageDetector()
-    language = detector.detect(body)[0]
+
+    custom_sentences = [
+        'I am a robot',
+        'Mi nombre es Carlos',
+        "Olá! Gostaria de lhe conhecer"
+    ]
+
+    languages = list()
+    for sentence in custom_sentences:
+        detector = LanguageDetector()
+        language = detector.detect(sentence)[0]
+        languages.append(language)
+
     response = {
         'status_code': HTTPStatus.OK,
-        'language': language
+        'languages': languages
     }
     logger.info(f'Response: {str(response)}')
+
     return response
+
+# def handler(event, _):
+#     logger.info(f'Event: {event}')
+#     http_method = event['requestContext']['http']['method']
+#     if http_method != 'POST':
+#         logger.exception(error_message)
+#         raise Exception(error_message)
+    
+#     body = event.get('body')
+#     if not body:
+#         error_message = 'The body should not be empty'
+#         logger.error(error_message)
+#         return {
+#             'status_code': HTTPStatus.BAD_REQUEST,
+#             'error_message': error_message
+#         }
+#     logger.info(f'Received content: {body}')
+#     detector = LanguageDetector()
+#     language = detector.detect(body)[0]
+#     response = {
+#         'status_code': HTTPStatus.OK,
+#         'language': language
+#     }
+#     logger.info(f'Response: {str(response)}')
+#     return response
