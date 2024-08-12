@@ -10,7 +10,8 @@ resource "aws_lambda_function" "language_detector" {
     }
     role = aws_iam_role.language_detector.arn
     layers = [
-        "arn:aws:lambda:${var.aws_region}:553035198032:layer:git-lambda2:8"
+        "arn:aws:lambda:${var.aws_region}:553035198032:layer:git-lambda2:8",
+        "arn:aws:lambda:${var.aws_region}:446751924810:layer:python-3-6-scikit-learn-0-22-0:4"
     ]
     timeout = 120
 }
