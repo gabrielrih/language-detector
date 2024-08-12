@@ -53,6 +53,7 @@ jobs:
 
   deploy:
     name: 'Deploying on AWS'
+    needs: [ plan ]
     runs-on: ubuntu-latest
     environment: production
 
