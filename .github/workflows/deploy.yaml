@@ -26,6 +26,10 @@ jobs:
             chmod 744 ./scripts/build_lambda.py
             ./scripts/build_lambda.py
 
+        - name: Debug
+          run: |
+            ls -ls ./src/language-detector/python
+
         - name: Setup Terraform
           uses: hashicorp/setup-terraform@v1
           with:
