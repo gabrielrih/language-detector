@@ -6,7 +6,7 @@ on:
       tf_command:
         description: 'Terraform command to run'
         required: true
-        default: 'apply'
+        default: 'destroy'
         type: choice
         options:
           - apply
