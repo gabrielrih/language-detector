@@ -2,7 +2,7 @@ resource "aws_lambda_function" "language_detector" {
     function_name = "language-detector"
     filename = var.lambda_zip_path
     handler = "lambda.handler"  # main file + main function
-    runtime = "python3.11"
+    runtime = var.python_runtime
     memory_size = 256
     source_code_hash = filebase64sha256("${var.lambda_zip_path}")
     ephemeral_storage {
@@ -10,10 +10,15 @@ resource "aws_lambda_function" "language_detector" {
     }
     role = aws_iam_role.language_detector.arn
     layers = [
-        "arn:aws:lambda:${var.aws_region}:553035198032:layer:git-lambda2:8",
-        "arn:aws:lambda:${var.aws_region}:446751924810:layer:python-3-8-scikit-learn-0-23-0:2"
+        aws_lambda_layer_version.lambda_layer.arn
     ]
     timeout = 120
+}
+
+resource "aws_lambda_layer_version" "lambda_layer" {
+  filename   = var.lambda_layer_zip_path
+  layer_name = "scikit_learn"
+  compatible_runtimes = [var.python_runtime]
 }
 
 resource "aws_iam_role" "language_detector" {
