@@ -92,22 +92,22 @@ jobs:
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       
-      # - name: Terraform Apply
-      #   if: ${{ inputs.tf_command }} == 'apply'
-      #   run: |
-      #     cd iac/prd
-      #     terraform apply -auto-approve
-      #   env:
-      #     AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
-      #     AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-      #     TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
-
-      - name: Terraform Destroy
-        # if: ${{ inputs.tf_command }} == 'destroy'
+      - name: Terraform Apply
+        if: ${{ inputs.tf_command }} == 'apply'
         run: |
           cd iac/prd
-          terraform destroy -auto-approve
+          terraform apply -auto-approve
         env:
           AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
           AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+
+      # - name: Terraform Destroy
+      #   # if: ${{ inputs.tf_command }} == 'destroy'
+      #   run: |
+      #     cd iac/prd
+      #     terraform destroy -auto-approve
+      #   env:
+      #     AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+      #     AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+      #     TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
