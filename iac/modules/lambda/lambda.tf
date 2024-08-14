@@ -9,17 +9,17 @@ resource "aws_lambda_function" "language_detector" {
       size = 512
     }
     role = aws_iam_role.language_detector.arn
-    layers = [
-        aws_lambda_layer_version.lambda_layer.arn
-    ]
+    # layers = [
+    #     aws_lambda_layer_version.lambda_layer.arn
+    # ]
     timeout = 120
 }
 
-resource "aws_lambda_layer_version" "lambda_layer" {
-  filename   = var.lambda_layer_zip_path
-  layer_name = "scikit_learn"
-  compatible_runtimes = [var.python_runtime]
-}
+# resource "aws_lambda_layer_version" "lambda_layer" {
+#   filename   = var.lambda_layer_zip_path
+#   layer_name = "scikit_learn"
+#   compatible_runtimes = [var.python_runtime]
+# }
 
 resource "aws_iam_role" "language_detector" {
     name = "language-detector-role"
