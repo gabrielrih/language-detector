@@ -15,7 +15,7 @@ resource "aws_security_group" "load_balancer_sg" {
 }
 
 resource "aws_lb" "service_lb" {
-    name = var.service_name
+    name = "loadbalancer"
     load_balancer_type = "application"
     subnets = [var.aws_default_subnet_a_id, var.aws_default_subnet_b_id]
     security_groups = [aws_security_group.load_balancer_sg.id]
