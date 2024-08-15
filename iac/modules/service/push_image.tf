@@ -2,11 +2,11 @@ resource "null_resource" "push" {
     depends_on = [ aws_ecr_repository.service_ecr ]
 
     provisioner "local-exec" {
-        command = "docker build -t ${service_name}:${var.service_version} ${path.root}/../../"
+        command = "docker build -t ${var.service_name}:${var.service_version} ${path.root}/../../"
     }
 
     provisioner "local-exec" {
-        command = "docker tag ${service_name}:${var.service_version} ${aws_ecr_repository.service_ecr.repository_url}:${var.service_version}"
+        command = "docker tag ${var.service_name}:${var.service_version} ${aws_ecr_repository.service_ecr.repository_url}:${var.service_version}"
     }
 
     provisioner "local-exec" {
