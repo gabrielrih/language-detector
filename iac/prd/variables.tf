@@ -3,12 +3,17 @@ variable "aws_region" {
     default = "us-east-1"
 }
 
-variable "lambda_zip_path" {
+variable "service_name" {
     type = string
-    default = "../../src/language-detector/python/language-detector.zip"
+    default = "language_detector"
 }
 
-variable "lambda_layer_zip_path" {
+variable "service_version" {
     type = string
-    default = "../../src/layers/scikit-learn/package.zip"
+    default = "0.1.0"
+}
+
+variable "service_internal_port" {
+    type = number
+    default = 8000
 }
