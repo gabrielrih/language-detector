@@ -3,7 +3,7 @@ resource "aws_cloudwatch_log_group" "service_log_group" {
 }
 
 resource "aws_ecs_task_definition" "service_ecs_task_definition" {
-  family                   = "${var.service_name}-task-definition"
+  family                   = "${var.service_name}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
