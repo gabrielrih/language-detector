@@ -3,7 +3,7 @@ resource "aws_cloudwatch_log_group" "service_log_group" {
 }
 
 resource "aws_ecs_task_definition" "service_ecs_task_definition" {
-  family                   = var.service_name
+  family                   = "${var.service_name}-task-definition"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "service_ecs_task_definition" {
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "github-api-task",
+      "name": "${var.service_name}",
       "image": "${aws_ecr_repository.service_ecr.repository_url}:${var.service_version}",
       "essential": true,
       "memory": 512,
@@ -63,7 +63,7 @@ resource "aws_security_group" "service_sg" {
 }
 
 resource "aws_ecs_service" "service_ecs_service" {
-  name            = "${var.service_name}-service"
+  name            = "${var.service_name}"
   cluster         = var.aws_ecs_cluster_id
   task_definition = aws_ecs_task_definition.service_ecs_task_definition.arn
   desired_count   = 1
