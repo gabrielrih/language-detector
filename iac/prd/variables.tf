@@ -10,7 +10,7 @@ variable "service_name" {
 
 variable "service_version" {
     type = string
-    default = "0.2.0"
+    default = "0.2.1"
 }
 
 variable "service_internal_port" {
