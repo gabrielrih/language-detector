@@ -10,6 +10,6 @@ COPY ./src /app/src
 COPY ./ai/model/model.pkl /app/src
 COPY ./ai/model/vectorizer.pkl /app/src
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--reload"]
 
 EXPOSE 8000
