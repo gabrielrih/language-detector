@@ -56,7 +56,7 @@ Tech Stack:
 - [Python](https://www.python.org/): Language used on the microservice
 - [GitHub Actions](https://docs.github.com/en/actions): For CI/CD
 
-![](.doc/service/.drawio.architecture.png)
+![](.doc/service/.drawio.png)
 
 
 ### Deploying the microservice
