@@ -10,6 +10,7 @@ on:
           description: 'TerraForm command to run'
           type: choice
           required: true
+          default: apply
           options:
             - apply
             - destroy
