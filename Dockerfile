@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r ./requirements/common.txt
 
 COPY main.py /app
 COPY ./src /app/src
-COPY ./ai/model/model.pkl /app/src
-COPY ./ai/model/vectorizer.pkl /app/src
+COPY ./ai/model/model.pkl /app/
+COPY ./ai/model/vectorizer.pkl /app/
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--reload"]
 
