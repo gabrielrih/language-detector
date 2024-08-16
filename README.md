@@ -17,7 +17,7 @@ First of all you must [download this dataset](https://www.statmt.org/europarl/),
 
 ![](.doc/ai/dataset.png)
 
-> For study purpose we trained the model using just sentences in Portuguese, English and Spanish. So you deleted all the other folders (it has multiple languages).
+> For study purpose I trained the model using just sentences in Portuguese, English and Spanish. So I deleted all the other folders (this dataset has multiple languages).
 
 
 ### Training the model
@@ -35,7 +35,7 @@ When it ends, it will save two files on disk:
 - ai/model/vectorizer.pkl: It represents the vectorizer object in binary format.
 
 ### Testing the model
-To test the model we can run the notebook ```ai/notebooks/testing_the_model_ipynb```.
+To test the model you can run this notebook ```ai/notebooks/testing_the_model_ipynb```.
 
 ![](.doc/ai/testing_the_model.png)
 
@@ -58,3 +58,10 @@ TO DO.
 
 127.0.0.1:8000/api/health
 127.0.0.1:8000/api/translate/Esta%20%C3%A9%20uma%20mensagem%20para%20traduzir
+
+Colocar orientaçäo para testes, criar o .env e setar as varia'veis
+
+```
+AI_MODEL_PATH='/Users/usuario/Documents/git-projects/language-detector/ai/model/model.pkl'
+AI_VECTORIZER_PATH='/Users/usuario/Documents/git-projects/language-detector/ai/model/vectorizer.pkl'
+```

@@ -4,6 +4,15 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+  workflow_dispatch:  # to run it manually
+    inputs:
+        tf_command:
+          description: 'TerraForm command to run'
+          type: choice
+          required: true
+          options:
+            - apply
+            - destroy
 
 permissions:
   contents: read
@@ -20,15 +29,6 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v4
-
-        # - name: Create ZIP for lambda code
-        #   run: |
-        #     chmod 744 ./scripts/build_lambda.py
-        #     ./scripts/build_lambda.py
-
-        # - name: Debug
-        #   run: |
-        #     ls -ls ./src/language-detector/python
 
         - name: Setup Terraform
           uses: hashicorp/setup-terraform@v1
@@ -65,11 +65,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Create ZIP for lambda code
-      #   run: |
-      #     chmod 744 ./scripts/build_lambda.py
-      #     ./scripts/build_lambda.py
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -82,16 +77,18 @@ jobs:
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       
-      # - name: Terraform Apply
-      #   run: |
-      #     cd iac/prd
-      #     terraform apply -auto-approve
-      #   env:
-      #     AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
-      #     AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-      #     TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+      - if: github.event.inputs.tf_command == 'apply'
+        name: Terraform Apply
+        run: |
+          cd iac/prd
+          terraform apply -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
 
-      - name: Terraform Destroy
+      - if: github.event.inputs.tf_command == 'destroy'
+        name: Terraform Destroy
         run: |
           cd iac/prd
           terraform destroy -auto-approve
