@@ -3,7 +3,17 @@ variable "aws_region" {
     default = "us-east-1"
 }
 
-variable "lambda_zip_path" {
+variable "service_name" {
     type = string
-    default = "../../src/language-detector/python/language-detector.zip"
+    default = "language_detector"
+}
+
+variable "service_version" {
+    type = string
+    default = "0.2.2"
+}
+
+variable "service_internal_port" {
+    type = number
+    default = 8000
 }

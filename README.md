@@ -55,3 +55,6 @@ TO DO.
 - []()
 
 -->
+
+127.0.0.1:8000/api/health
+127.0.0.1:8000/api/translate/Esta%20%C3%A9%20uma%20mensagem%20para%20traduzir
