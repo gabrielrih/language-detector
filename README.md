@@ -1,5 +1,5 @@
 # language-detector
-A simple Python service that identifies the language given a certain sentence (pt, en or es). It uses an AI model to identify the correct language.
+A Python service that identifies the language given a certain sentence (pt, en or es). It uses an AI model to identify the correct language.
 
 ## Index
 - [Generating the AI model](#generating-the-ai-model)
