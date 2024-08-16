@@ -58,3 +58,10 @@ TO DO.
 
 127.0.0.1:8000/api/health
 127.0.0.1:8000/api/translate/Esta%20%C3%A9%20uma%20mensagem%20para%20traduzir
+
+Colocar orientaçäo para testes, criar o .env e setar as varia'veis
+
+```
+AI_MODEL_PATH='/Users/usuario/Documents/git-projects/language-detector/ai/model/model.pkl'
+AI_VECTORIZER_PATH='/Users/usuario/Documents/git-projects/language-detector/ai/model/vectorizer.pkl'
+```
