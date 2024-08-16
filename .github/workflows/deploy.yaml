@@ -45,7 +45,7 @@ jobs:
         - name: Terraform Plan
           run: |
             cd iac/prd
-            terraform plan
+            terraform plan -var="service_version=${{ github.run_id }}"
           env:
             AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
             AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
@@ -80,8 +80,8 @@ jobs:
       - if: github.event.inputs.tf_command == 'apply' || ! github.event.inputs.tf_command
         name: Terraform Apply
         run: |
-          cd iac/prd
-          terraform apply -auto-approve
+          cd iac/prd 
+          terraform apply -var="service_version=${{ github.run_id }}" -auto-approve
         env:
           AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
           AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
