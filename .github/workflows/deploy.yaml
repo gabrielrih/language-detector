@@ -10,7 +10,6 @@ on:
           description: 'TerraForm command to run'
           type: choice
           required: true
-          default: apply
           options:
             - apply
             - destroy
@@ -78,7 +77,7 @@ jobs:
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       
-      - if: github.event.inputs.tf_command == 'apply'
+      - if: github.event.inputs.tf_command == 'apply' || ! github.event.inputs.tf_command
         name: Terraform Apply
         run: |
           cd iac/prd
